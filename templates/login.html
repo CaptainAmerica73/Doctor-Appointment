@@ -1,0 +1,76 @@
+{% extends "base.html" %} {% load static %} {% block main %}
+
+<div
+  class="min-h-[100dvh] flex items-center justify-center"
+  style="
+    background-image: url('{% static 'images/bgimage.jpg' %}');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  "
+>
+  <form
+    class="flex flex-col justify-center items-center pb-[2rem] bg-[rgba(255,255,255,0.5)] w-[40vw] gap-[5vh] backdrop-blur-sm"
+    method="post"
+  >
+    {% csrf_token %}
+    <div class="text-[4rem] py-[2rem] font-semibold">Login</div>
+    <div class="relative h-[5vh] w-[70%]">
+      <input
+        name="username"
+        id="username"
+        class="peer border-b-2 border-black bg-transparent outline-none h-full w-full"
+        type="text"
+        value="{{ form.username.value | default:''}}"
+        placeholder=""
+      />
+      <label
+        for="username"
+        class="absolute -top-1 left-0 text-sm -translate-y-1/2 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-lg"
+      >
+        Username
+      </label>
+    </div>
+    <div class="relative h-[5vh] w-[70%]">
+      <input
+        name="email"
+        id="email"
+        class="peer border-b-2 border-black bg-transparent outline-none h-full w-full"
+        type="email"
+        value="{{ form.email.value | default:''}}"
+        placeholder=""
+      />
+      <label
+        for="email"
+        class="absolute -top-1 left-0 text-sm -translate-y-1/2 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-lg"
+        >Email</label
+      >
+    </div>
+    <div class="relative h-[5vh] w-[70%]">
+      <input
+        name="password"
+        id="password"
+        class="peer border-b-2 border-black bg-transparent outline-none h-full w-full"
+        type="password"
+        placeholder=""
+      />
+      <label
+        for="password"
+        class="absolute -top-1 left-0 text-sm -translate-y-1/2 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-lg"
+        >Password</label
+      >
+    </div>
+    <div class="text-base">
+      Don't have an account?
+      <a href="/signup" class="text-lg text-violet-700 hover:underline"
+        >Signup</a
+      >
+    </div>
+    <input
+      type="submit"
+      class="bg-sky-400 rounded-xl cursor-pointer p-[.5rem_1.5rem] border-[.2rem] border-sky-400 text-white text-lg hover:border-white"
+      value="Login"
+    />
+  </form>
+</div>
+{% endblock main %}

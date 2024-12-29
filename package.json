@@ -1,0 +1,11 @@
+{
+  "name": "doctor-appointment",
+  "version": "1.0.0",
+  "description": "",
+  "main": "postcss.config.js",
+  "scripts": {
+    "dev": "npx tailwindcss -i ./static/css-config/config.css -o ./static/css/output.css --watch"
+  },
+  "author": "",
+  "license": "ISC"
+}

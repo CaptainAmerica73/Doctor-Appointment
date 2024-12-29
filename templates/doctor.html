@@ -1,0 +1,32 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block content %}
+<div class="flex flex-col min-h-[80dvh] w-[100dvw]">
+    <div class="flex items-center justify-center gap-[2rem] p-[2rem] border-b-[1px] border-black">
+        <img class="h-1/2 w-1/2 basis-1/2" src="{% static "images/profile_avatar.webp" %}" alt="{{ doctor.name }}">
+        <div class="flex flex-col basis-1/2 gap-[2rem] p-[1rem_2rem]">
+            <div class="text-4xl font-bold">Dr. {{ doctor.name }}({{ doctor.registration_no }})</div>
+            <div class="text-2xl capitalize">{{ doctor.get_gender_display }}</div>
+            <div class="text-2xl">Age: {{ doctor.age }}</div>
+            <div class="bg-orange-500 font-semibold text-lg w-[10rem] text-center py-[.8rem] rounded-xl">Wishlist</div>
+            <div class="bg-yellow-400 font-semibold text-lg w-[10rem] text-center py-[.8rem] rounded-xl">Get Appointment</div>
+            <div class="text-2xl">Location: {{ doctor.location }}</div>
+            <a href="tel:{{ doctor.contact }}" class="text-2xl">Contact: <span class="text-violet-700 underline">{{ doctor.contact }}</span></a>
+            <a href="mailto:{{ doctor.email }}" class="text-2xl">Email: <span class="text-violet-700 underline">{{ doctor.email }}</span></a>
+            <div class="text-2xl">Specialization: {{ doctor.specialization }}</div>
+        </div>
+    </div>
+    <div class="scroll flex gap-[2rem] p-[2rem] overflow-x-scroll">
+        {% for item in related_doctors %}
+        <div class="w-[15rem] h-[20rem] p-[1rem] flex flex-col items-center gap-[1rem] rounded-xl border-2 border-black">
+            <div class="w-[25ch] line-clamp-3 overflow-hidden text-center text-2xl font-semibold text-ellipsis">{{ item.name }}</div>
+            <img class="w-1/2 h-1/2" src="{% static "images/profile_avatar.webp" %}" alt="{{ item.name }}">
+            <div class="py-[.5rem] w-[5rem] rounded-xl text-ellipsis text-center text-white whitespace-nowrap overflow-hidden {% if item.get_gender_display == 'male' %}bg-blue-600{% else %}bg-pink-600{% endif %}">{{ item.get_gender_display }}</div>
+        <div class="w-[25ch] text-ellipsis text-center whitespace-nowrap overflow-hidden">Age: {{ item.age }}</div>
+        <div class="w-[29ch] text-ellipsis text-center whitespace-nowrap overflow-hidden">Specialization: {{ item.specialization }}</div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}
